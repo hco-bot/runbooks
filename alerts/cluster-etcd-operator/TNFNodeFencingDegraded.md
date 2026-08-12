@@ -2,11 +2,11 @@
 
 ## Meaning
 
-This alert fires when fencing for a node in the Two Nodes with Fencing (TNF)
-cluster is available but degraded. The `tnf_node_fencing_healthy` metric
-reports `0` while `tnf_node_fencing_available` is still `1`, indicating that
-one of multiple fence devices has failed while at least one remains
-operational.
+This alert fires when one or more fence devices for a node in the Two Nodes
+with Fencing (TNF) cluster have failed, but at least one device remains
+operational — a state referred to as *fencing degraded*. The
+`tnf_node_fencing_healthy` metric reports `0` while
+`tnf_node_fencing_available` is still `1`.
 
 This is a `warning` severity alert that fires after the condition persists for
 10 minutes.
