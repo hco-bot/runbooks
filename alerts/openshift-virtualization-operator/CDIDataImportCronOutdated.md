@@ -98,12 +98,21 @@ with the previous default storage class. The CDI will recreate the data volumes
 with the newly configured default storage class.
 
 3. If your cluster is installed in a restricted network environment, disable the
-`enableCommonBootImageImport` feature gate in order to opt out of automatic
-updates:
+common boot image import feature in order to opt out of automatic updates, by
+setting the `enableCommonBootImageImport` field to `false`:
 
-   ```bash
-   $ oc patch hco kubevirt-hyperconverged -n $CDI_NAMESPACE --type json -p '[{"op": "replace", "path": "/spec/featureGates/enableCommonBootImageImport", "value": false}]'
-   ```
+   * In version v4.23.0 or above, use the `v1` API
+     version:
+     ```bash
+     $ oc patch hco kubevirt-hyperconverged -n $CDI_NAMESPACE --type merge -p \
+     '{"spec": {"workloadSources": {"enableCommonBootImageImport": false}}}'
+     ```
+   * In versions earlier than v4.23.0, use the
+     `v1beta1` API version:
+     ```bash
+     $ oc patch hco kubevirt-hyperconverged -n $CDI_NAMESPACE --type merge -p \
+     '{"spec": {"enableCommonBootImageImport": false}}'
+     ```
 
 If you cannot resolve the issue, log in to the
 [Customer Portal](https://access.redhat.com) and open a support case,
