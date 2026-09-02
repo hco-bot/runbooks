@@ -19,16 +19,31 @@ the HCO:
 - Complete the installation by creating a `HyperConverged` CR with its
 default values:
 
-  ```bash
-  $ cat <<EOF | oc apply -f -
-  apiVersion: hco.kubevirt.io/v1beta1
-  kind: HyperConverged
-  metadata:
-    name: kubevirt-hyperconverged
-    namespace: openshift-cnv
-  spec: {}
-  EOF
-  ```
+  * In version v4.23.0
+    or above, use the `v1` API version:
+    ```bash
+    $ cat <<EOF | oc apply -f -
+    apiVersion: hco.kubevirt.io/v1
+    kind: HyperConverged
+    metadata:
+      name: kubevirt-hyperconverged
+      namespace: openshift-cnv
+    spec: {}
+    EOF
+    ```
 
-- Uninstall the HCO. If the uninstall process continues to run, you must
+  * In versions earlier than v4.23.0,
+    use the `v1beta1` API version:
+    ```bash
+    $ cat <<EOF | oc apply -f -
+    apiVersion: hco.kubevirt.io/v1beta1
+    kind: HyperConverged
+    metadata:
+      name: kubevirt-hyperconverged
+      namespace: openshift-cnv
+    spec: {}
+    EOF
+    ```
+
+- Uninstall the HCO. If the uninstallation process continues to run, you must
 resolve that issue in order to cancel the alert.
